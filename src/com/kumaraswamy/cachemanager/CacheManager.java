@@ -82,31 +82,6 @@ public class CacheManager extends AndroidNonvisibleComponent {
         FileRead(tag, path.getAbsolutePath());
     }
 
-    @SimpleFunction(
-            description = "Delete the cache memory including all data")
-    public boolean DeleteCacheMemory() {
-        return deleteDir(activity.getCacheDir().getParentFile());
-    }
-
-    // THANKS TO : https://stackoverflow.com/a/58085806/14461795
-
-    public static boolean deleteDir(File dir) {
-        if (dir != null && dir.isDirectory()) {
-            String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success) {
-                    return false;
-                }
-            }
-            return dir.delete();
-        } else if(dir!= null && dir.isFile()) {
-            return dir.delete();
-        } else {
-            return false;
-        }
-    }
-
     @SimpleProperty(
             description = "Text type data")
     public int TextTypeData() {
